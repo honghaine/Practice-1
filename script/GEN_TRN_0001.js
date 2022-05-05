@@ -217,29 +217,30 @@ If there are more than two sheets per tab, additional sheet variables are specif
             }
     	}
     	
-//    	function sheet1_OnChange(sheetObj,Row,Col){
-//       	 if(Col == 2){ // dung switch case 
-//   			var code=sheetObj.GetCellValue(Row, Col);
-//   			var regex = /^[A-Z]{3}[0-9]{5}$/;
-//   			console.log(regex.test(code));
-//   			console.log(code.length);
-//   			if(regex.test(code) == true && code.length == 8) {
-//	       	    for(var int=1; int < sheetObj.RowCount(); int++) {
-//	   			var orlcode=sheetObj.GetCellValue(int, Col);
-//	   			/* null 인 경우와 자기 자신은 비교할 필요가 없음 */
-//	   				if(code != '' && int != Row && code == orlcode){
-//	       				 //ComShowMessage("동일한 Message Code가 존재합니다.");
-//	       				 ComShowCodeMessage('COM12115',code);
-//	       				 sheetObj.SetCellValue(Row, Col,"");
-//	       				 return;
-//	       			 }
-//	       		 }
-//   			} else {
-//   				ComShowCodeMessage('COM12115',code);
-//   				return;
-//   			}
-//       	 }
-//        }
+//event fires when cell in sheet1 is changed
+   	function sheet1_OnChange(sheetObj,Row,Col){
+      	 if(Col == 2){ // dung switch case 
+  			var code=sheetObj.GetCellValue(Row, Col);
+  			var regex = /^[A-Z]{3}[0-9]{5}$/;
+  			console.log(regex.test(code));
+  			console.log(code.length);
+  			if(regex.test(code) == true && code.length == 8) {
+	       	    for(var int=1; int < sheetObj.RowCount(); int++) {
+	   			var orlcode=sheetObj.GetCellValue(int, Col);
+	   			/* null 인 경우와 자기 자신은 비교할 필요가 없음 */
+	   				if(code != '' && int != Row && code == orlcode){
+	       				 //ComShowMessage("동일한 Message Code가 존재합니다.");
+	       				 ComShowCodeMessage('COM12115',code);
+	       				 sheetObj.SetCellValue(Row, Col,"");
+	       				 return;
+	       			 }
+	       		 }
+  			} else {
+  				ComShowCodeMessage('COM12115',code);
+  				return;
+  			}
+      	 }
+       }
     	
     	function sheet1_OnSearchEnd(sheetObj, Code, Msg, StCode, StMsg) { 
          	ComOpenWait(false);
